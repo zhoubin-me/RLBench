@@ -231,12 +231,14 @@ def get_stored_demos(amount: int, image_paths: bool, dataset_root: str,
                         DEPTH_SCALE)
                     near = obs[i].misc['wrist_camera_near']
                     far = obs[i].misc['wrist_camera_far']
-                    wrist_depth_m = near + wrist_depth * (far - near)
-                    if obs_config.wrist_camera.depth:
-                        d = wrist_depth_m if obs_config.wrist_camera.depth_in_meters else wrist_depth
-                        obs[i].wrist_depth = obs_config.wrist_camera.depth_noise.apply(d)
-                    else:
-                        obs[i].wrist_depth = None
+                    # wrist_depth_m = near + wrist_depth * (far - near)
+                    # if obs_config.wrist_camera.depth:
+                    #     d = wrist_depth_m if obs_config.wrist_camera.depth_in_meters else wrist_depth
+                    #     obs[i].wrist_depth = obs_config.wrist_camera.depth_noise.apply(d)
+                    # else:
+                    #     obs[i].wrist_depth = None
+                    wrist_depth_m = wrist_depth
+                    obs[i].wrist_depth = wrist_depth
 
                 if obs_config.front_camera.depth or obs_config.front_camera.point_cloud:
                     front_depth = image_to_float_array(
