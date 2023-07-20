@@ -210,7 +210,7 @@ class Scene(object):
                         depth = depth_noise.apply(depth)
                 if get_pcd:
                     depth_m = depth
-                    if not depth_in_meters:
+                    if depth_in_meters:
                         near = sensor.get_near_clipping_plane()
                         far = sensor.get_far_clipping_plane()
                         depth_m = near + depth * (far - near)
